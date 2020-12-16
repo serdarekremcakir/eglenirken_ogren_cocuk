@@ -6,7 +6,16 @@ import {
     TouchableOpacity,
 } from "react-native";
 
-class GirisKaydolBtn extends Component {
+
+  const GirisKaydolBtn = ({text, onPress = () => {} }) => (
+    <TouchableOpacity onPress={onPress} style={styles.loginBtn}>
+      <Text style={styles.loginText}>{text}</Text>
+    </TouchableOpacity>
+  );
+  
+  export default GirisKaydolBtn;
+  
+/*class GirisKaydolBtn extends Component {
 
     render() {
         return (
@@ -18,7 +27,7 @@ class GirisKaydolBtn extends Component {
         );
     }
 }
-export default GirisKaydolBtn;
+export default GirisKaydolBtn;*/
 
 const styles = StyleSheet.create({
     container: {
@@ -41,3 +50,5 @@ const styles = StyleSheet.create({
         
       },
 });
+
+

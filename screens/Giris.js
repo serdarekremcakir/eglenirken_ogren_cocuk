@@ -44,7 +44,7 @@ export default class Giris extends React.Component { //App
 
         <View style={{marginTop:25}}></View>
         <GirisKaydolBtn  text="Giris" /> 
-        <GirisKaydolBtn  text="Kaydol"/> 
+        <GirisKaydolBtn onPress={() => this.props.navigation.navigate('Kaydol')} text="Kaydol"/> 
         <View style={{marginTop:50}}></View>
       </View>
     );
