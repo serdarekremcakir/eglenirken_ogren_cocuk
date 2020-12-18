@@ -9,6 +9,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 
 import Test from './Test'
+import Hayvanlar from '../data/Hayvanlar';
+import Renkler from '../data/Renkler';
 
 class HomeScreen extends Component {
     render() {
@@ -16,7 +18,8 @@ class HomeScreen extends Component {
         return (
 
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Button onPress={() => navigation.navigate('Test')} title="G11o to 222Test"/>
+                <Button onPress={() => navigation.navigate('Test', {sorular:Hayvanlar})} title="Hayvanlarrr"/>
+                <Button onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"/>
                 <Button onPress={() => navigation.toggleDrawer()} title="Acc"/>
             </View>
 
@@ -45,8 +48,7 @@ export default function Hehe() {
   return (
     
       <Drawer.Navigator initialRouteName="HomeScreen">
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Test" component={Test} />
+        <Drawer.Screen name="Hayvanlar" component={HomeScreen} />
       </Drawer.Navigator>
     
   );

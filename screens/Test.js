@@ -1,17 +1,20 @@
 import React from 'react';
 import { View, StyleSheet, StatusBar, Text, Image, Dimensions } from 'react-native';
 import Hayvanlar from '../data/Hayvanlar';
+import Renkler from '../data/Renkler';
+
 import TestBtn from '../components/TestBtn';
 
 export default class Test extends React.Component {
   state = {
-    sorusayisi: 2,
+    sorusayisi: 10,
     soruindex: 0,
     score: 0,
     renk:'white',
     renk1:'white',
     renk2:'white',
-    renk3:'white'
+    renk3:'white',
+    resimmi: true,
   };
 
   butonclick = (cevapmi) => {
@@ -49,7 +52,6 @@ export default class Test extends React.Component {
     if (sonrakisoru >= this.state.sorusayisi){
       alert("expo bildirim atacak")
       return this.props.navigation.popToTop();
-      //return this.props.navigation.navigate("Hehe");
     }
 
     this.setState({
@@ -60,14 +62,23 @@ export default class Test extends React.Component {
   }
 
   render() {
-    const soruss = Hayvanlar[this.state.soruindex];
+
+    const sorulars = this.props.route.params.sorular;
+    const soruss = sorulars[this.state.soruindex];
+   // const soruss = Hayvanlar[this.state.soruindex];
     
+    if (sorulars == Renkler){
+      this.state.resimmi= false;
+    }
+
+
     return (
       <View style={styles.container}>
         <View style={{alignItems:'center', justifyContent:'center', flex:1,marginTop:40}}>
+        {this.state.resimmi ? (
         <Image
               style={{width:350,height:250}}
-              source={{uri:soruss.soru}}/>
+              source={{uri:soruss.soru}}/>) : <View style={{borderWidth:1,height:250,width:350,backgroundColor:soruss.soru}}></View> }
         </View>
 
         <StatusBar barStyle="light-content" />
