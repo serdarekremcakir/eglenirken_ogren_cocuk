@@ -48,7 +48,7 @@ export default class Test extends React.Component {
 
     if (sonrakisoru >= this.state.sorusayisi){
       alert("expo bildirim atacak")
-      return this.props.navigation.popToTop();
+      //return this.props.navigation.popToTop();
     }
 
     this.setState({
