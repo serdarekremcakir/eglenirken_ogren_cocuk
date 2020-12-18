@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, StatusBar, Text, Image, Dimensions } from 'react-native';
-import Hayvanlar from '../Hayvanlar';
+import Hayvanlar from '../data/Hayvanlar';
 import TestBtn from '../components/TestBtn';
 
 export default class Test extends React.Component {
@@ -48,7 +48,8 @@ export default class Test extends React.Component {
 
     if (sonrakisoru >= this.state.sorusayisi){
       alert("expo bildirim atacak")
-      //return this.props.navigation.popToTop();
+      return this.props.navigation.popToTop();
+      //return this.props.navigation.navigate("Hehe");
     }
 
     this.setState({
