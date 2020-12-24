@@ -7,6 +7,8 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import TabNavigator from'./screens/TabNavigator';
 
+import Profil from './screens/Profil';
+
 import {YellowBox} from 'react-native';
 YellowBox.ignoreWarnings(["Setting a timer"]);
 YellowBox.ignoreWarnings(["YellowBox"]);
@@ -19,13 +21,14 @@ YellowBox.ignoreWarnings(["YellowBox"]);
 const Stack = createStackNavigator();
 function MyStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Giris">
       <Stack.Screen name="Giris" component={Giris} options={{headerShown: false}}/>
-      <Stack.Screen name="TabNavigator" component={TabNavigator} />
+      <Stack.Screen name="TabNavigator" component={TabNavigator} options={{headerShown: false}}/>
+      <Stack.Screen name="Profil" component={Profil} options={{headerShown: false}}/>
       <Stack.Screen options={{headerShown: false}} name="Kaydol" component={Kaydol} />
 
       <Stack.Screen name="Test" component={Test} />
-
+      
      
     </Stack.Navigator>
   );

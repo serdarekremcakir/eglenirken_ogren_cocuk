@@ -24,6 +24,7 @@ export default class Kaydol extends React.Component { //App
     {
     ad: this.state.ad,
     maxskor: 1,
+    hayvansayi: 0,
     }).then((ref) => {  });
         this.props.navigation.navigate('TabNavigator')
       }).catch(error=>{ alert("hatali bilgil")});
@@ -49,7 +50,7 @@ export default class Kaydol extends React.Component { //App
           <TextInput  
             style={styles.inputText}
             placeholder="Isim Giriniz" 
-            placeholderTextColor="white"
+            placeholderTextColor="black"
             onChangeText={text => this.setState({ad:text})}/>
         </View>
 
@@ -57,7 +58,7 @@ export default class Kaydol extends React.Component { //App
           <TextInput  
             style={styles.inputText}
             placeholder="Email Giriniz" 
-            placeholderTextColor="white"
+            placeholderTextColor="black"
             onChangeText={text => this.setState({email:text})}/>
         </View>
 
@@ -66,7 +67,7 @@ export default class Kaydol extends React.Component { //App
             secureTextEntry
             style={styles.inputText}
             placeholder="Sifre Giriniz" 
-            placeholderTextColor="white"
+            placeholderTextColor="black"
             onChangeText={text => this.setState({sifre:text})}/>
         </View>
 
@@ -84,14 +85,14 @@ export default class Kaydol extends React.Component { //App
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#999999',
+    backgroundColor: '#6FABB6',
     alignItems: 'center',
     justifyContent: 'center',
   },
   logo:{
     fontStyle: 'italic',
     fontWeight:"bold",
-    fontSize:50,
+    fontSize:40,
     color:"#4d0000",
     //marginBottom:70,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',

@@ -11,10 +11,13 @@ export default class Test extends React.Component {
     soruindex: 0,
     skor: 0,
     makskor: 0,
-    renk:'white',
-    renk1:'white',
-    renk2:'white',
-    renk3:'white',
+    hayvansayi:0,
+
+    kontrol:false,
+    kontrol1:false,
+    kontrol2:false,
+    kontrol3:false,
+
     resimmi: true,
     xas: ""
   };
@@ -22,17 +25,17 @@ export default class Test extends React.Component {
   butonclick = (cevapmi) => {
     var sonrakisoru = this.state.soruindex;
     var skor = this.state.skor;
-
+    var yenihayvansayisi = this.state.hayvansayi;
     if(cevapmi === true){
       sonrakisoru+=1;
       skor += 2;
       //alert("dogru cevap" + skor+ this.state.score)
 
       this.setState({
-        renk: 'white',
-        renk1:'white',
-        renk2:'white',
-        renk3:'white'
+        kontrol:false,
+        kontrol1:false,
+        kontrol2:false,
+        kontrol3:false,
       })
     }
 
@@ -40,25 +43,29 @@ export default class Test extends React.Component {
       skor -= 1;
       alert("yanlis cevap")
       if(cevapmi == '3')
-      this.setState({renk3:'red'})
+      this.setState({kontrol3:true})
 
       if(cevapmi == '2')
-      this.setState({renk2:'red'})
+      this.setState({kontrol2:true})
 
       if(cevapmi == '1')
-      this.setState({renk1:'red'})
+      this.setState({kontrol1:true})
 
       if(cevapmi == '0')
-      this.setState({renk:'red'})
+      this.setState({kontrol:true})
     }
 
     if (sonrakisoru >= this.state.sorusayisi){
-      
+      if (this.props.route.params.sorular == Hayvanlar) {
+        yenihayvansayisi+=1;
+      }
       alert("expo bildirim atacak")
+  
       let deneme = firebase.auth().currentUser.uid;
       firebase.firestore().collection('Users').doc(deneme)
   .update({
-    maxskor:skor
+    maxskor:skor,
+    hayvansayi:yenihayvansayisi,
    })
    this.componentDidMount();
       return this.props.navigation.navigate("TabNavigator");
@@ -79,14 +86,15 @@ export default class Test extends React.Component {
     .then(querySnapshot => {
       this.setState({
         makskor:querySnapshot.data().maxskor,
+        hayvansayi:querySnapshot.data().hayvansayi,
         sorusayisi: 3,
         soruindex: 0,
         skor: 0,
         makskor: 0,
-        renk:'white',
-        renk1:'white',
-        renk2:'white',
-        renk3:'white',
+        kontrol:false,
+        kontrol1:false,
+        kontrol2:false,
+        kontrol3:false,
         resimmi: true,
     
       })
@@ -119,23 +127,27 @@ export default class Test extends React.Component {
               <TestBtn
                 key={soruss.cevaplar[0].id}
                 text={soruss.cevaplar[0].text}
-                xx = {this.state.renk}
+                xx =  {this.state.kontrol ? ('red'): 'white'}
+                dsb = {this.state.kontrol}
                 onPress={() => this.butonclick(soruss.cevaplar[0].cevapmi)}
               /> 
               <TestBtn
                 key={soruss.cevaplar[1].id}
                 text={soruss.cevaplar[1].text}
-                xx = {this.state.renk1}
+                xx =  {this.state.kontrol1 ? ('red'): 'white'}
+                dsb = {this.state.kontrol1}
                 onPress={() => this.butonclick(soruss.cevaplar[1].cevapmi)}
               />
               <TestBtn
                 key={soruss.cevaplar[2].id}
                 text={soruss.cevaplar[2].text}
-                xx = {this.state.renk2}
+                xx =  {this.state.kontrol2 ? ('red'): 'white'}
+                dsb = {this.state.kontrol2}
                 onPress={() => this.butonclick(soruss.cevaplar[2].cevapmi)}
               /> 
               <TestBtn
-                xx = {this.state.renk3}
+                xx =  {this.state.kontrol3 ? ('red'): 'white'}
+                dsb = {this.state.kontrol3}
                 key={soruss.cevaplar[3].id}
                 text={soruss.cevaplar[3].text}
                 onPress={() => this.butonclick(soruss.cevaplar[3].cevapmi)}

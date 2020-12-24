@@ -14,56 +14,13 @@ import Card from '../components/Card';
 import firebase from '../Firebase';
 
 class HomeScreen extends Component {
-  constructor() {
-    super();
-    
-    this.state = {
-
-      kullaniciAdi:" ",
-      maxskor: 1
-    }
-  }
-
- /* componentDidUpdate() {
-    this.componentDidMount();
-  }*/
-
-
-
-  componentDidMount(){
-    let deneme = firebase.auth().currentUser.uid;
-    firebase.firestore().collection("Users").doc(deneme)
-      .get()
-    .then(querySnapshot => {
-      this.setState({
-        
-        kullaniciAdi:querySnapshot.data().ad,
-        maxskor:querySnapshot.data().maxskor
-      })
-    });
-  }
-
-   Cikisyap() {
-    try {
-      firebase.auth().signOut();
-      this.props.navigation.navigate('Giris');
-    } catch (err) {
-      alert('There is something wrong!', err.message);
-    }
-  }
-
 
     render() {
 
         const { navigation } = this.props;
-        
-        
         return (
 
           <ScrollView style = {{padding:20}}>
-            <Button onPress={() => this.Cikisyap()} title="cikis"/>
-            <Text>Kullanıcı İsmi: {this.state.kullaniciAdi}</Text>
-            <Text>Skor: {this.state.maxskor}</Text>
             <Button onPress={() => navigation.toggleDrawer()} title="Diller"/>
               <View style={styles.Cardlar}>
                 <Card

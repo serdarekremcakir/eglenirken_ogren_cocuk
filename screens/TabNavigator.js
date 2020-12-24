@@ -8,7 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Testler from './Testler';
-import Bos from './Bos';
+import Profil from './Profil';
 
 
 const Tab = createBottomTabNavigator();
@@ -20,17 +20,20 @@ class TabNavigator extends Component {
             <Tab.Navigator
             tabBarOptions={{
                 
-				activeTintColor: "#50d3a7",
-                inactiveTintColor: "gray",
+				activeTintColor: "#ffaa00",
+                inactiveTintColor: "white",
                 
                 
 				labelStyle: {
+
+                    
                     textAlign:'center',
                     paddingBottom:10,    
 					fontSize: 16,
                 },
                 style:{
-                    
+                    //color:'black',
+                    backgroundColor:'#4d0000',
                     height:40,
                     justifyContent:'center',
                     alignItems:'center',
@@ -39,7 +42,7 @@ class TabNavigator extends Component {
             >
         
                 <Tab.Screen name="Testler" component={Testler}   />
-                <Tab.Screen name="Bos sayfa" component={Bos} />
+                <Tab.Screen name="Profilim" component={Profil} />
             </Tab.Navigator>
 
         );
