@@ -4,22 +4,24 @@ import Hayvanlar from '../data/Hayvanlar';
 import Renkler from '../data/Renkler';
 
 import TestBtn from '../components/TestBtn';
-
+import firebase from '../Firebase';
 export default class Test extends React.Component {
   state = {
     sorusayisi: 10,
     soruindex: 0,
-    score: 0,
+    skor: 0,
+    makskor: 0,
     renk:'white',
     renk1:'white',
     renk2:'white',
     renk3:'white',
     resimmi: true,
+    xas: ""
   };
 
   butonclick = (cevapmi) => {
     var sonrakisoru = this.state.soruindex;
-    var skor = this.state.score;
+    var skor = this.state.skor;
 
     if(cevapmi === true){
       sonrakisoru+=1;
@@ -35,6 +37,7 @@ export default class Test extends React.Component {
     }
 
     else{
+      skor -= 1;
       alert("yanlis cevap")
       if(cevapmi == '3')
       this.setState({renk3:'red'})
@@ -50,16 +53,46 @@ export default class Test extends React.Component {
     }
 
     if (sonrakisoru >= this.state.sorusayisi){
+      
       alert("expo bildirim atacak")
-      return this.props.navigation.popToTop();
+      let deneme = firebase.auth().currentUser.uid;
+      firebase.firestore().collection('Users').doc(deneme)
+  .update({
+    maxskor:skor
+   })
+   this.componentDidMount();
+      return this.props.navigation.navigate("TabNavigator");
     }
 
     this.setState({
       soruindex: sonrakisoru,
-      score: skor,
+      skor: skor,
     })
 
   }
+
+  componentDidMount(){
+    let deneme = firebase.auth().currentUser.uid;
+   
+    firebase.firestore().collection("Users").doc(deneme)
+      .get()
+    .then(querySnapshot => {
+      this.setState({
+        makskor:querySnapshot.data().maxskor,
+        sorusayisi: 3,
+        soruindex: 0,
+        skor: 0,
+        makskor: 0,
+        renk:'white',
+        renk1:'white',
+        renk2:'white',
+        renk3:'white',
+        resimmi: true,
+    
+      })
+    });
+  }
+
 
   render() {
 
@@ -110,7 +143,7 @@ export default class Test extends React.Component {
         </View>
 
         <Text style={styles.skoryazi}>
-            Skor: {this.state.score}
+            Skor: {this.state.skor}
           </Text>
       </View>
     );

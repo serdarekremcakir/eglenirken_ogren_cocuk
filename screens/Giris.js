@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, StatusBar, Image, Dimensions} from 'react-native';
 import GirisKaydolBtn from '../components/GirisKaydolBtn';
+import firebase from '../Firebase';
+
 
 
 export default class Giris extends React.Component { //App
@@ -9,18 +11,44 @@ export default class Giris extends React.Component { //App
   }
   state={
     email:"",
-    password:""
+    sifre:""
   }
+
+  Giris = (email, sifre) => {
+    
+    try {
+      firebase
+         .auth()
+         .signInWithEmailAndPassword(email, sifre)
+         .then(data=>{alert("Giris Basarili"),
+        
+        //this.props.navigation.navigate('Hehe')                 
+        this.props.navigation.navigate('TabNavigator')  
+      }
+         ).catch(error=>{
+           alert("Hatali giris")
+         });
+
+} catch (error) {
+      //console.log(error.toString(error));
+      
+    }
+
+  };
   
   
   render(){
+    
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor="black"/>
+        <View style={{flex:1,paddingTop:20}}>
         <Image
           style={styles.image}
           source={{uri: 'https://i.hizliresim.com/bsFlwV.png'}}
         />
+        </View>
+        
         <Text style={styles.logo}>Eğlenirken Öğren</Text>
         <Text style={styles.logo2}>Çocuk</Text>   
 
@@ -37,13 +65,12 @@ export default class Giris extends React.Component { //App
             style={styles.inputText}
             placeholder="Sifrenizi Giriniz..." 
             placeholderTextColor="black" 
-            onChangeText={text => this.setState({password:text})}/>
+            onChangeText={text => this.setState({sifre:text})}/>
         </View>
 
 
-
         <View style={{marginTop:25}}></View>
-        <GirisKaydolBtn  text="Giris" /> 
+        <GirisKaydolBtn  onPress={() => this.Giris(this.state.email, this.state.sifre)} text="Giris" /> 
         <GirisKaydolBtn onPress={() => this.props.navigation.navigate('Kaydol')} text="Kaydol"/> 
         <View style={{marginTop:50}}></View>
       </View>
@@ -60,12 +87,13 @@ const styles = StyleSheet.create({
   logo:{
     fontStyle: 'italic',
     fontWeight:"bold",
-    fontSize:50,
+    fontSize:40,
     color:"#4d0000",
     //marginBottom:70,
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: {width: -1, height: 4},
-    textShadowRadius: 6
+    textShadowRadius: 6,
+    textAlign:'center',
   },
   logo2:{
     fontStyle: 'italic',

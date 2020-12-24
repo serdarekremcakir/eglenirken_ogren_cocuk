@@ -5,36 +5,28 @@ import Test from './screens/Test';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
+import TabNavigator from'./screens/TabNavigator';
 
-import { View, Text, Image, Button } from 'react-native';
-import Hehe from'./screens/Hehe';
+import {YellowBox} from 'react-native';
+YellowBox.ignoreWarnings(["Setting a timer"]);
+YellowBox.ignoreWarnings(["YellowBox"]);
 
-
-
-function LogoTitle() {
-  return (
-    <Image
-              style={{width:50,height:50}}
-              source={{uri:"https://i.hizliresim.com/X4gQee.jpg"}}/>
-  );
-}
 
 
 
 
 //stack navigation 
 const Stack = createStackNavigator();
-function MyStack({navigation}) {
+function MyStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Hehe" component={Hehe} /*options={{ headerLeft: () => (
-              <Button
-                onPress={() => navigation.openDrawer()}
-                title="Info"/>
-            ), }}*/ />
-      <Stack.Screen name="Test" component={Test} />
-      <Stack.Screen name="Giris" component={Giris} />
+      <Stack.Screen name="Giris" component={Giris} options={{headerShown: false}}/>
+      <Stack.Screen name="TabNavigator" component={TabNavigator} />
       <Stack.Screen options={{headerShown: false}} name="Kaydol" component={Kaydol} />
+
+      <Stack.Screen name="Test" component={Test} />
+
+     
     </Stack.Navigator>
   );
 }

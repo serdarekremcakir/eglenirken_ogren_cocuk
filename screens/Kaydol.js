@@ -1,18 +1,40 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Dimensions } from 'react-native';
 import GirisKaydolBtn from '../components/GirisKaydolBtn';
+import firebase from '../Firebase';
+export default class Kaydol extends React.Component { //App
+  
+  constructor(){
+    super();
+  }
+  
 
-const {width,height} = Dimensions.get('window');
-export default class Register extends React.Component { //App
   state={
-    name:"",
+    ad:"",
     email:"",
-    password:""
+    sifre:""
   }
 
-
+  Kaydol = (email, sifre) => {
+    
+    try {
+      firebase.auth().createUserWithEmailAndPassword(email, sifre)
+        .then(data => {()=>alert("kayit basarili"),
+         firebase.firestore().collection("Users").doc(data.user.uid).set(
+    {
+    ad: this.state.ad,
+    maxskor: 1,
+    }).then((ref) => {  });
+        this.props.navigation.navigate('TabNavigator')
+      }).catch(error=>{ alert("hatali bilgil")});
+      } catch (error) {
+            //console.log(error.toString(error));
+            
+          }
+        };
 
   render(){
+    
     return (
       <View style={styles.container}>
           
@@ -21,8 +43,6 @@ export default class Register extends React.Component { //App
           source={{uri: 'https://i.hizliresim.com/bsFlwV.png'}}
         />
         
-
-        
         <Text style={styles.logo}>Eğlenirken Öğren</Text>
         <Text style={styles.logo2}>Çocuk</Text>    
         <View style={styles.inputView} >
@@ -30,7 +50,7 @@ export default class Register extends React.Component { //App
             style={styles.inputText}
             placeholder="Isim Giriniz" 
             placeholderTextColor="white"
-            onChangeText={text => this.setState({name:text})}/>
+            onChangeText={text => this.setState({ad:text})}/>
         </View>
 
         <View style={styles.inputView} >
@@ -47,12 +67,12 @@ export default class Register extends React.Component { //App
             style={styles.inputText}
             placeholder="Sifre Giriniz" 
             placeholderTextColor="white"
-            onChangeText={text => this.setState({password:text})}/>
+            onChangeText={text => this.setState({sifre:text})}/>
         </View>
 
 
         <View style = {{marginTop:40}}></View>
-        <GirisKaydolBtn text="Kayıt Ol"/>
+        <GirisKaydolBtn onPress={() => this.Kaydol(this.state.email, this.state.sifre)} text="Kayıt Ol"/>
         <View style = {{marginTop:80}}></View>
 
 
