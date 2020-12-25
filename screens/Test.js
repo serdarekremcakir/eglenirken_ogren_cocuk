@@ -12,6 +12,9 @@ export default class Test extends React.Component {
     skor: 0,
     makskor: 0,
     hayvansayi:0,
+    renksayi:0,
+    animalsayi:0,
+    colorsayi:0,
 
     kontrol:false,
     kontrol1:false,
@@ -19,16 +22,21 @@ export default class Test extends React.Component {
     kontrol3:false,
 
     resimmi: true,
-    xas: ""
   };
 
   butonclick = (cevapmi) => {
+    var toplamskor = this.state.makskor;
     var sonrakisoru = this.state.soruindex;
-    var skor = this.state.skor;
+    var oyunskor = this.state.skor;
     var yenihayvansayisi = this.state.hayvansayi;
+    var yenirenksayisi = this.state.renksayi;
+    var yenianimalsayisi = this.state.animalsayi;
+    var yenicolorsayisi = this.state.colorsayi;
+
+
     if(cevapmi === true){
       sonrakisoru+=1;
-      skor += 2;
+      oyunskor += 2;
       //alert("dogru cevap" + skor+ this.state.score)
 
       this.setState({
@@ -40,7 +48,7 @@ export default class Test extends React.Component {
     }
 
     else{
-      skor -= 1;
+      oyunskor -= 1;
       alert("yanlis cevap")
       if(cevapmi == '3')
       this.setState({kontrol3:true})
@@ -59,13 +67,20 @@ export default class Test extends React.Component {
       if (this.props.route.params.sorular == Hayvanlar) {
         yenihayvansayisi+=1;
       }
-      alert("expo bildirim atacak")
+      if (this.props.route.params.sorular == Renkler) {
+        yenirenksayisi+=1;
+      }
+
+      oyunskor = toplamskor + oyunskor;
   
       let deneme = firebase.auth().currentUser.uid;
       firebase.firestore().collection('Users').doc(deneme)
   .update({
-    maxskor:skor,
+    maxskor:oyunskor,
     hayvansayi:yenihayvansayisi,
+    renksayi:yenirenksayisi,
+    animalsayi:yenianimalsayisi,
+    colorsayi:yenicolorsayisi
    })
    this.componentDidMount();
       return this.props.navigation.navigate("TabNavigator");
@@ -73,7 +88,7 @@ export default class Test extends React.Component {
 
     this.setState({
       soruindex: sonrakisoru,
-      skor: skor,
+      skor: oyunskor,
     })
 
   }
@@ -87,10 +102,12 @@ export default class Test extends React.Component {
       this.setState({
         makskor:querySnapshot.data().maxskor,
         hayvansayi:querySnapshot.data().hayvansayi,
+        renksayi: querySnapshot.data().renksayi,
+        animalsayi: querySnapshot.data().animalsayi,
+        colorsayi: querySnapshot.data().colorsayi,
         sorusayisi: 3,
         soruindex: 0,
         skor: 0,
-        makskor: 0,
         kontrol:false,
         kontrol1:false,
         kontrol2:false,

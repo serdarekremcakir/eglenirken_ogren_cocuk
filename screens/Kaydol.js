@@ -23,8 +23,13 @@ export default class Kaydol extends React.Component { //App
          firebase.firestore().collection("Users").doc(data.user.uid).set(
     {
     ad: this.state.ad,
-    maxskor: 1,
+    email: this.state.email,
+    maxskor: 0,
     hayvansayi: 0,
+    renksayi: 0,
+    animalsayi: 0,
+    colorsayi: 0
+    
     }).then((ref) => {  });
         this.props.navigation.navigate('TabNavigator')
       }).catch(error=>{ alert("hatali bilgil")});

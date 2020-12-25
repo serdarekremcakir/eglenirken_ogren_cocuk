@@ -14,139 +14,106 @@ import Card from '../components/Card';
 import firebase from '../Firebase';
 
 class HomeScreen extends Component {
-
-    render() {
-
-        const { navigation } = this.props;
-        return (
-
-          <ScrollView style = {{padding:20}}>
-            <Button onPress={() => navigation.toggleDrawer()} title="Diller"/>
-              <View style={styles.Cardlar}>
-                <Card
-                link="https://i.hizliresim.com/XdF4vJ.jpg"
-                onPress={() => navigation.navigate('Test', {sorular:Hayvanlar})} title="xxx"
-                text="Hayvanlar"/>
-
-                <Card
-                link="https://i.hizliresim.com/Ektc07.jpg"
-                onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
-                text="Renkler"/>
-              </View>
-              <View style={styles.Cardlar}>
-                <Card
-                link='https://i.hizliresim.com/Pgbb0P.jpg'
-                onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
-                text="Renkler3"/>
-                <Card
-                link="https://i.hizliresim.com/X4gQee.jpg"
-                onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
-                text="Renkler4"/>
-              </View>
-              <View style={styles.Cardlar}>
-                <Card
-                link="https://i.hizliresim.com/X4gQee.jpg"
-                onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
-                text="Renkler5"/>
-                <Card
-                link="https://i.hizliresim.com/X4gQee.jpg"
-                onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
-                text="Renkler6"/>
-              </View>
-              <View style={styles.Cardlar}>
-                <Card
-                link="https://i.hizliresim.com/X4gQee.jpg"
-                onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
-                text="Renkler5"/>
-                <Card
-                link="https://i.hizliresim.com/X4gQee.jpg"
-                onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
-                text="Renkler6"/>
-              </View>
-      
-          
-           </ScrollView> 
-
-
-        );
-        
-    }
+  render() {
+    const { navigation } = this.props;
+    return (
+      <ScrollView style = {{padding:20}}>
+        <Button onPress={() => navigation.toggleDrawer()} title="Diller"/>
+          <View style={styles.Cardlar}>
+            <Card
+            link="https://i.hizliresim.com/XdF4vJ.jpg"
+            onPress={() => navigation.navigate('Test', {sorular:Hayvanlar})} title="xxx"
+            text="Hayvanlar"/>
+            <Card
+            link="https://i.hizliresim.com/Ektc07.jpg"
+            onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
+            text="Renkler"/>
+          </View>
+          <View style={styles.Cardlar}>
+            <Card
+            link='https://i.hizliresim.com/Pgbb0P.jpg'
+            onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
+            text="Renkler3"/>
+            <Card
+            link="https://i.hizliresim.com/X4gQee.jpg"
+            onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
+            text="Renkler4"/>
+          </View>
+          <View style={styles.Cardlar}>
+            <Card
+            link="https://i.hizliresim.com/X4gQee.jpg"
+            onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
+            text="Renkler5"/>
+            <Card
+            link="https://i.hizliresim.com/X4gQee.jpg"
+            onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
+            text="Renkler6"/>
+          </View>
+          <View style={styles.Cardlar}>
+            <Card
+            link="https://i.hizliresim.com/X4gQee.jpg"
+            onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
+            text="Renkler5"/>
+            <Card
+            link="https://i.hizliresim.com/X4gQee.jpg"
+            onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
+            text="Renkler6"/>
+          </View>
+       </ScrollView> 
+      );
+  }
 }
 
 
 class HomeScreen2 extends Component {
-  constructor(props) {
-    super(props);
-    
-
-
-    this.state = {
-
-      kullaniciAdi:"serdar",
-    }
-  }
-
-
-
-
-
-
-
   render() {
-      const { navigation } = this.props;
-      return (
-
-        <ScrollView style = {{padding:20}}>
-          <Text>Kullanıcı İsmi: {this.state.kullaniciAdi}</Text>
-          <Button onPress={() => navigation.toggleDrawer()} title="Diller"/>
-            <View style={styles.Cardlar}>
-              <Card
-              link="https://i.hizliresim.com/X4gQee.jpg"
-              onPress={() => navigation.navigate('Test', {sorular:Hayvanlar})} title="xxx"
-              text="Hayvanlar"/>
-
-              <Card
-              link="https://i.hizliresim.com/Ektc07.jpg"
-              onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
-              text="Renkler"/>
-            </View>
-            <View style={styles.Cardlar}>
-              <Card
-              link='https://i.hizliresim.com/Pgbb0P.jpg'
-              onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
-              text="Renkler3"/>
-              <Card
-              link="https://i.hizliresim.com/X4gQee.jpg"
-              onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
-              text="Renkler4"/>
-            </View>
-            <View style={styles.Cardlar}>
-              <Card
-              link="https://i.hizliresim.com/X4gQee.jpg"
-              onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
-              text="Renkler5"/>
-              <Card
-              link="https://i.hizliresim.com/X4gQee.jpg"
-              onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
-              text="Renkler6"/>
-            </View>
-            <View style={styles.Cardlar}>
-              <Card
-              link="https://i.hizliresim.com/X4gQee.jpg"
-              onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
-              text="Renkler5"/>
-              <Card
-              link="https://i.hizliresim.com/X4gQee.jpg"
-              onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
-              text="Renkler6"/>
-            </View>
+    const { navigation } = this.props;
+    return (
+      <ScrollView style = {{padding:20}}>
+        <Button onPress={() => navigation.toggleDrawer()} title="Languages"/>
+          <View style={styles.Cardlar}>
+            <Card
+            link="https://i.hizliresim.com/XdF4vJ.jpg"
+            onPress={() => navigation.navigate('Test', {sorular:Hayvanlar})} title="xxx"
+            text="Animals"/>
+            <Card
+            link="https://i.hizliresim.com/Ektc07.jpg"
+            onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
+            text="Colors"/>
+          </View>
+          <View style={styles.Cardlar}>
+            <Card
+            link='https://i.hizliresim.com/Pgbb0P.jpg'
+            onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
+            text="Renkler3"/>
+            <Card
+            link="https://i.hizliresim.com/X4gQee.jpg"
+            onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
+            text="Renkler4"/>
+          </View>
+          <View style={styles.Cardlar}>
+            <Card
+            link="https://i.hizliresim.com/X4gQee.jpg"
+            onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
+            text="Renkler5"/>
+            <Card
+            link="https://i.hizliresim.com/X4gQee.jpg"
+            onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
+            text="Renkler6"/>
+          </View>
+          <View style={styles.Cardlar}>
+            <Card
+            link="https://i.hizliresim.com/X4gQee.jpg"
+            onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
+            text="Renkler5"/>
+            <Card
+            link="https://i.hizliresim.com/X4gQee.jpg"
+            onPress={() => navigation.navigate('Test', {sorular:Renkler})} title="Renkler"
+            text="Renkler6"/>
+          </View>
+       </ScrollView> 
+    );
     
-        
-         </ScrollView> 
-
-
-      );
-      
   }
 }
 
@@ -165,11 +132,7 @@ export default function Testler() {
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
+
     Cardlar:{
       flex:1,
       justifyContent:'space-around',

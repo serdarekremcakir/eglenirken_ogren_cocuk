@@ -15,10 +15,13 @@ class Profil extends Component {
       }
       state={
         kullaniciAdi:'',
-        email:"deneme@mail.com",
+        email:"",
         sifre:"",
-        maxskor:"",
-        hayvansayi:-3,
+        maxskor:0,
+        hayvansayi:0,
+        renksayi:0,
+        animalsayi:0,
+        colorsayi:0,
       }
 
       componentDidUpdate(){
@@ -31,9 +34,13 @@ class Profil extends Component {
           .get()
         .then(querySnapshot => {
           this.setState({
-            
             kullaniciAdi:querySnapshot.data().ad,
-            maxskor:querySnapshot.data().maxskor
+            maxskor:querySnapshot.data().maxskor,
+            hayvansayi:querySnapshot.data().hayvansayi,
+            renksayi:querySnapshot.data().renksayi,
+            animalsayi:querySnapshot.data().animalsayi,
+            colorsayi:querySnapshot.data().colorsayi,
+            email:querySnapshot.data().email
           })
         });
       }
@@ -47,14 +54,18 @@ class Profil extends Component {
             
             kullaniciAdi:querySnapshot.data().ad,
             maxskor:querySnapshot.data().maxskor,
-            hayvansayi:querySnapshot.data().hayvansayi
+            hayvansayi:querySnapshot.data().hayvansayi,
+            renksayi:querySnapshot.data().renksayi,
+            animalsayi:querySnapshot.data().animalsayi,
+            colorsayi:querySnapshot.data().colorsayi,
+            email:querySnapshot.data().email
           })
         });
       }
     
        Cikisyap() {
         try {
-          firebase.auth().signOut();
+          //firebase.auth().signOut();
           this.props.navigation.navigate('Giris');
         } catch (err) {
           alert('There is something wrong!', err.message);
@@ -63,8 +74,6 @@ class Profil extends Component {
 
     render() {
         return (
-
-        
         <ImageBackground
           style={styles.headerBackgroundImage}
           blurRadius={5}
@@ -95,12 +104,12 @@ class Profil extends Component {
           
           <View>
               <Text style={styles.userCityText}>Hayvanlar Testi Tamamlama Sayısı: {this.state.hayvansayi}</Text>
-              <Text style={styles.userCityText}>Renkler Testi Tamamlama Sayısı: 4</Text>
-              <Text style={styles.userCityText}>Animal Testi Tamamlama Sayısı: 5</Text>
-              <Text style={styles.userCityText}>Color Testi Tamamlama Sayısı: 6</Text>
+              <Text style={styles.userCityText}>Renkler Testi Tamamlama Sayısı: {this.state.renksayi}</Text>
+              <Text style={styles.userCityText}>Animal Testi Tamamlama Sayısı: {this.state.animalsayi}</Text>
+              <Text style={styles.userCityText}>Color Testi Tamamlama Sayısı: {this.state.colorsayi}</Text>
           </View>
           <View style={{paddingTop:30}}>
-              <Text style={styles.toplampuanText}>Toplam Puan: 12313123</Text>
+              <Text style={styles.toplampuanText}>Toplam Puan: {this.state.maxskor}</Text>
           </View>
             
           <View style={{alignItems:'center',justifyContent:'center',paddingTop:20, width:"80%"}}>
@@ -109,9 +118,6 @@ class Profil extends Component {
         </View>
         
         </ImageBackground>
-        
-      
-      
     )
   }
 
