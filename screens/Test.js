@@ -2,7 +2,8 @@ import React from 'react';
 import { View, StyleSheet, StatusBar, Text, Image, Dimensions } from 'react-native';
 import Hayvanlar from '../data/Hayvanlar';
 import Renkler from '../data/Renkler';
-
+import Animals from '../data/Animals';
+import Colors from '../data/Colors';
 import TestBtn from '../components/TestBtn';
 import firebase from '../Firebase';
 export default class Test extends React.Component {
@@ -70,6 +71,12 @@ export default class Test extends React.Component {
       if (this.props.route.params.sorular == Renkler) {
         yenirenksayisi+=1;
       }
+      if (this.props.route.params.sorular == Animals) {
+        yenianimalsayisi+=1;
+      }
+      if (this.props.route.params.sorular == Colors) {
+        yenicolorsayisi+=1;
+      }
 
       oyunskor = toplamskor + oyunskor;
   
@@ -105,7 +112,7 @@ export default class Test extends React.Component {
         renksayi: querySnapshot.data().renksayi,
         animalsayi: querySnapshot.data().animalsayi,
         colorsayi: querySnapshot.data().colorsayi,
-        sorusayisi: 3,
+        sorusayisi: 10,
         soruindex: 0,
         skor: 0,
         kontrol:false,
@@ -125,7 +132,7 @@ export default class Test extends React.Component {
     const soruss = sorulars[this.state.soruindex];
    // const soruss = Hayvanlar[this.state.soruindex];
     
-    if (sorulars == Renkler){
+    if (sorulars == Renkler || sorulars == Colors){
       this.state.resimmi= false;
     }
 

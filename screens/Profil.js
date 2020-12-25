@@ -85,7 +85,7 @@ class Profil extends Component {
               style={styles.userImage}
               source={{uri: 'https://incomarinspection.com/wp-content/uploads/2017/04/Unknown-Profile.png'}}
             />
-            <Text style={styles.userNameText}>{this.state.kullaniciAdi} Serdar</Text>
+            <Text style={styles.userNameText}>{this.state.kullaniciAdi}</Text>
               <View style={styles.userCityRow}>
                 <Text style={styles.userCityText}>
                   {this.state.email}
