@@ -13,6 +13,7 @@ import {YellowBox} from 'react-native';
 YellowBox.ignoreWarnings(["Setting a timer"]);
 YellowBox.ignoreWarnings(["YellowBox"]);
 
+import Lidertablosu from './screens/Lidertablosu';
 
 
 
@@ -22,6 +23,7 @@ const Stack = createStackNavigator();
 function MyStack() {
   return (
     <Stack.Navigator initialRouteName="Giris">
+       <Stack.Screen name="Lidertablosu" component={Lidertablosu} options={{headerShown: false}}/>
       <Stack.Screen name="Giris" component={Giris} options={{headerShown: false}}/>
       <Stack.Screen name="TabNavigator" component={TabNavigator} options={{headerShown: false}}/>
       <Stack.Screen name="Profil" component={Profil} options={{headerShown: false}}/>

@@ -72,6 +72,11 @@ class Profil extends Component {
         }
       }
 
+      Lidertablosu(){
+        this.props.navigation.navigate('Lidertablosu');
+
+      }
+
     render() {
         return (
         <ImageBackground
@@ -114,6 +119,7 @@ class Profil extends Component {
             
           <View style={{alignItems:'center',justifyContent:'center',paddingTop:20, width:"80%"}}>
              <GirisKaydolBtn onPress={() => this.Cikisyap()} text="CIKIS"/> 
+             <GirisKaydolBtn onPress={() => this.Lidertablosu()} text="Tablo"/> 
           </View>
         </View>
         
