@@ -32,7 +32,7 @@ export default class Kaydol extends React.Component { //App
     
     }).then((ref) => {  });
         this.props.navigation.navigate('TabNavigator')
-      }).catch(error=>{ alert("hatali bilgil")});
+      }).catch(error=>{ alert("Şifre en az 6 haneli olmalı ve e-posta mail formatında olmalıdır.")});
       } catch (error) {
             //console.log(error.toString(error));
             
