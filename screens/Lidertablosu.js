@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from '../Firebase';
-import Leaderboard from 'react-native-leaderboard';
+import Leaderboard from '../components/Leaderboard';
 import { View,Text, Image, TouchableOpacity} from 'react-native';
 
 export default class Lidertablosu extends React.Component { //App
