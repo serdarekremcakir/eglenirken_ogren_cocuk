@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Testler from './Testler';
 import Profil from './Profil';
+import Market from './Market';
 
 
 const Tab = createBottomTabNavigator();
@@ -25,8 +26,6 @@ class TabNavigator extends Component {
                 
                 
 				labelStyle: {
-
-                    
                     textAlign:'center',
                     paddingBottom:10,    
 					fontSize: 16,
@@ -36,13 +35,14 @@ class TabNavigator extends Component {
                     backgroundColor:'#4d0000',
                     height:40,
                     justifyContent:'center',
-                    alignItems:'center',
+                    //alignItems:'center',
                 }
 			}}
             >
-        
-                <Tab.Screen name="Testler" component={Testler}   />
+                <Tab.Screen name="Anasayfa" component={Testler}   />
                 <Tab.Screen name="Profilim" component={Profil} />
+                <Tab.Screen name="Market" component={Market} />
+                
             </Tab.Navigator>
 
         );

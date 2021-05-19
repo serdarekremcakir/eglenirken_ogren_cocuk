@@ -6,6 +6,19 @@ import Animals from '../data/Animals';
 import Colors from '../data/Colors';
 import TestBtn from '../components/TestBtn';
 import firebase from '../Firebase';
+
+Array.prototype.shuffle = function() {
+  var i = this.length, j, temp;
+  if(i == 0) return this;
+  while(--i){
+   j = Math.floor(Math.random() * (i + 1));
+   temp = this[i];
+   this[i] = this[j];
+   this[j] = temp;
+  }
+  return this;
+}
+
 export default class Test extends React.Component {
   state = {
     sorusayisi: 10,
@@ -16,6 +29,7 @@ export default class Test extends React.Component {
     renksayi:0,
     animalsayi:0,
     colorsayi:0,
+    karistir:0,
 
     kontrol:false,
     kontrol1:false,
@@ -120,6 +134,7 @@ export default class Test extends React.Component {
         kontrol2:false,
         kontrol3:false,
         resimmi: true,
+        karistir:0,
     
       })
     });
@@ -128,8 +143,16 @@ export default class Test extends React.Component {
 
   render() {
 
-    const sorulars = this.props.route.params.sorular;
+    let sorulars = this.props.route.params.sorular;
+    console.log("karistir=", this.state.karistir)
+
+    if(this.state.karistir == 0){
+      sorulars = sorulars.shuffle();
+      this.setState({karistir:99});
+      console.log("karistir----=", this.state.karistir)
+    }
     const soruss = sorulars[this.state.soruindex];
+
    // const soruss = Hayvanlar[this.state.soruindex];
     
     if (sorulars == Renkler || sorulars == Colors){

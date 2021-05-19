@@ -8,7 +8,6 @@ export default class Kaydol extends React.Component { //App
     super();
   }
   
-
   state={
     ad:"",
     email:"",
@@ -16,28 +15,30 @@ export default class Kaydol extends React.Component { //App
   }
 
   Kaydol = (email, sifre) => {
-    
     try {
       firebase.auth().createUserWithEmailAndPassword(email, sifre)
         .then(data => {()=>alert("kayit basarili"),
          firebase.firestore().collection("Users").doc(data.user.uid).set(
     {
-    ad: this.state.ad,
-    email: this.state.email,
-    maxskor: 0,
-    hayvansayi: 0,
-    renksayi: 0,
-    animalsayi: 0,
-    colorsayi: 0
-    
+      ad: this.state.ad,
+      email: this.state.email,
+      maxskor: 0,
+      hayvansayi: 0,
+      renksayi: 0,
+      animalsayi: 0,
+      colorsayi: 0,
+      esleskor: 0,
+      elmas:0,
+      adres:"Adres bilgisi yok.",
+      profilfoto: 'https://incomarinspection.com/wp-content/uploads/2017/04/Unknown-Profile.png',
+      id:firebase.auth().currentUser.uid
     }).then((ref) => {  });
-        this.props.navigation.navigate('TabNavigator')
+    this.props.navigation.navigate('TabNavigator')
       }).catch(error=>{ alert("Şifre en az 6 haneli olmalı ve e-posta mail formatında olmalıdır.")});
       } catch (error) {
-            //console.log(error.toString(error));
-            
-          }
-        };
+            //console.log(error.toString(error));      
+        }
+      };
 
   render(){
     

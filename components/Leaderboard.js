@@ -54,8 +54,7 @@ export default class Leaderboard extends Component {
               styles.rank,
               this.props.rankStyle,
               index < 9 ? styles.singleDidget : styles.doubleDidget
-            ]}
-          >
+            ]}>
             {parseInt(index) + 1}
           </Text>
           {this.props.icon && (
@@ -67,10 +66,39 @@ export default class Leaderboard extends Component {
           <Text style={[styles.label, this.props.labelStyle]} numberOfLines={1}>
             {item[this.props.labelBy]}
           </Text>
+          
+          
+          
         </View>
+
+        {index==0 ?
+        <View style={{flex:0.5,justifyContent:'center',flexDirection:'row',alignItems:'center'}}>
+          <Text style={{fontSize:15,color:'black',fontWeight:'bold'}}>+500 </Text>
+          <Image
+                style={{width:40,height:40,}}
+                source={{uri:"https://i.hizliresim.com/dlzg110.png"}}/>
+        </View>:null}
+  
+        {index==1 ?
+        <View style={{flex:0.5,justifyContent:'center',flexDirection:'row',alignItems:'center'}}>
+          <Text style={{fontSize:15,fontWeight:'bold'}}>+250 </Text>
+          <Image
+                style={{width:40,height:40,}}
+                source={{uri:"https://i.hizliresim.com/dlzg110.png"}}/>
+        </View>:null}
+        {index==2 ?
+        <View style={{flex:0.5,justifyContent:'center',flexDirection:'row',alignItems:'center'}}>
+          <Text style={{fontSize:15,color:'black',fontWeight:'bold'}}>+125 </Text>
+          <Image
+                style={{width:40,height:40}}
+                source={{uri:"https://i.hizliresim.com/dlzg110.png"}}/>
+        </View>:null}
+        
+        <View style={{flex:0.25,alignItems:'center',flexDirection:'row',justifyContent:'center'}}>
+        
         <Text style={[styles.score, this.props.scoreStyle]}>
           {item[sortBy] || 0}
-        </Text>
+        </Text></View>
       </View>
     );
 
@@ -120,6 +148,7 @@ export default class Leaderboard extends Component {
 
 const styles = StyleSheet.create({
   row: {
+    flex:1,
     paddingTop: 15,
     paddingBottom: 15,
     flexDirection: "row",
@@ -130,8 +159,9 @@ const styles = StyleSheet.create({
     borderColor: "#d6d7da"
   },
   left: {
+    flex:1,
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   rank: {
     fontSize: 17,
@@ -149,7 +179,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 17,
     flex: 1,
-    paddingRight: 80
+    //paddingRight: 80
   },
   score: {
     fontSize: 20,
@@ -159,8 +189,8 @@ const styles = StyleSheet.create({
     paddingLeft: 15
   },
   avatar: {
-    height: 30,
-    width: 30,
+    height: 40,
+    width: 40,
     borderRadius: 30 / 2,
     marginRight: 10
   }
@@ -191,3 +221,4 @@ const _sort = (data, sortBy, sort) => {
     );
   }
 };
+

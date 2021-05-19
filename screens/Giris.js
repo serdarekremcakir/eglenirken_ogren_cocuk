@@ -20,18 +20,16 @@ export default class Giris extends React.Component { //App
       firebase
          .auth()
          .signInWithEmailAndPassword(email, sifre)
-         .then(data=>{alert("Giris Basarili"),
-        
-        //this.props.navigation.navigate('Hehe')                 
+         .then(data=>{/*alert("Giris Basarili"),*/
+                       
         this.props.navigation.navigate('TabNavigator')  
       }
          ).catch(error=>{
-           alert("Hatali giris")
+           alert("Hatali giris!")
          });
 
 } catch (error) {
       //console.log(error.toString(error));
-      
     }
 
   };
